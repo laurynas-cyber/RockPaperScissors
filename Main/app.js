@@ -26,27 +26,49 @@ function win(user, computer) {
   userScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
-
-  converttoword(user) + " beats " + converttoword(computer) + ". You win!";
+  const userChoiceDiv = document.getElementById(user);
+  userLabel_div.style.backgroundColor = "green";
+  const smallUserword = "user".fontsize(3).sub(); //kodel neveikia?
+  result_p.innerText =
+    converttoword(user) + " beats " + converttoword(computer) + ". You win!";
+  userChoiceDiv.classList.add("green-glow");
+  setTimeout(function () {
+    userChoiceDiv.classList.remove("green-glow");
+  }, 300);
 }
 
 function loose(user, computer) {
-  userScore++;
-  userScore_span.innerHTML = userScore;
-  computerScore_span.innerHTML = computerScore;
-
-  converttoword(user) + " beats " + converttoword(computer) + ". You win!";
-}
-
-function draw(user, computer) {
   computerScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
+  const userChoiceDiv = document.getElementById(user);
+  compLabel_div.style.backgroundColor = "green";
 
-  converttoword(user) +
+  result_p.innerText =
+    converttoword(user) +
     " loses to " +
     converttoword(computer) +
-    ". You lost...";
+    ". You lost...!";
+  console.log("comp win");
+  userChoiceDiv.classList.add("red-glow");
+  setTimeout(function () {
+    userChoiceDiv.classList.remove("red-glow");
+  }, 300);
+}
+
+function draw(user, computer) {
+  const userChoiceDiv = document.getElementById(user);
+  userLabel_div.style.backgroundColor = "grey";
+  compLabel_div.style.backgroundColor = "grey";
+  result_p.innerText =
+    converttoword(user) +
+    " equals to " +
+    converttoword(computer) +
+    ". It is draw!";
+  userChoiceDiv.classList.add("gray-glow");
+  setTimeout(function () {
+    userChoiceDiv.classList.remove("gray-glow");
+  }, 300);
 }
 
 function game(userChoice) {
@@ -55,19 +77,16 @@ function game(userChoice) {
     case "rs":
     case "sp":
     case "pr":
-      userLabel_div.style.backgroundColor = "green";
       win(userChoice, computerChoice);
       break;
     case "sr":
     case "ps":
     case "rp":
-      userLabel_div.style.backgroundColor = "#e2584d";
       loose(userChoice, computerChoice);
       break;
     case "rr":
     case "pp":
     case "ss":
-      userLabel_div.style.backgroundColor = "grey";
       draw(userChoice, computerChoice);
       break;
   }
@@ -75,17 +94,20 @@ function game(userChoice) {
 
 function main() {
   rock_div.addEventListener("click", function () {
-    userLabel_div.style.backgroundColor = "#e2584d";
+    userLabel_div.style.backgroundColor = "red";
+    compLabel_div.style.backgroundColor = "red";
     game("r");
   });
 
   paper_div.addEventListener("click", function () {
-    userLabel_div.style.backgroundColor = "#e2584d";
+    userLabel_div.style.backgroundColor = "red";
+    compLabel_div.style.backgroundColor = "red";
     game("p");
   });
 
   sc_div.addEventListener("click", function () {
-    userLabel_div.style.backgroundColor = "#e2584d";
+    userLabel_div.style.backgroundColor = "red";
+    compLabel_div.style.backgroundColor = "red";
     game("s");
   });
 }
