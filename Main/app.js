@@ -9,6 +9,7 @@ const paper_div = document.getElementById("p");
 const sc_div = document.getElementById("s");
 const userLabel_div = document.getElementById("user-label");
 const compLabel_div = document.getElementById("computer-label");
+const reset_div = document.querySelector(".reset");
 
 function getComputerChoice() {
   const choices = ["r", "p", "s"];
@@ -41,6 +42,7 @@ function loose(user, computer) {
   computerScore++;
   userScore_span.innerHTML = userScore;
   computerScore_span.innerHTML = computerScore;
+
   const userChoiceDiv = document.getElementById(user);
   compLabel_div.style.backgroundColor = "green";
 
@@ -49,7 +51,6 @@ function loose(user, computer) {
     " loses to " +
     converttoword(computer) +
     ". You lost...!";
-  console.log("comp win");
   userChoiceDiv.classList.add("red-glow");
   setTimeout(function () {
     userChoiceDiv.classList.remove("red-glow");
@@ -92,23 +93,47 @@ function game(userChoice) {
   }
 }
 
+function red() {
+  userLabel_div.style.backgroundColor = "red";
+  compLabel_div.style.backgroundColor = "red";
+}
+
+function reset() {
+  userScore_span.innerHTML = 0;
+  computerScore_span.innerHTML = 0;
+  computerScore = 0;
+  userScore = 0;
+  userLabel_div.style.backgroundColor = "#e2584d";
+  compLabel_div.style.backgroundColor = "#e2584d";
+}
+
 function main() {
   rock_div.addEventListener("click", function () {
-    userLabel_div.style.backgroundColor = "red";
-    compLabel_div.style.backgroundColor = "red";
+    red();
     game("r");
   });
 
   paper_div.addEventListener("click", function () {
-    userLabel_div.style.backgroundColor = "red";
-    compLabel_div.style.backgroundColor = "red";
+    red();
     game("p");
   });
 
   sc_div.addEventListener("click", function () {
-    userLabel_div.style.backgroundColor = "red";
-    compLabel_div.style.backgroundColor = "red";
+    red();
     game("s");
+  });
+
+  reset_div.addEventListener("click", function () {
+    reset();
+
+    paper_div.classList.add("reset-glow");
+    rock_div.classList.add("reset-glow");
+    sc_div.classList.add("reset-glow");
+    setTimeout(function () {
+      paper_div.classList.remove("reset-glow");
+      rock_div.classList.remove("reset-glow");
+      sc_div.classList.remove("reset-glow");
+    }, 800);
   });
 }
 main();

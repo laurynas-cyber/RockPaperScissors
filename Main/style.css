@@ -105,3 +105,23 @@ img {
   border: 4px solid grey;
   box-shadow: 0 0 10px #25292b;
 }
+
+.reset {
+  margin: 20px auto;
+  border: 3px solid white;
+  width: 200px;
+  color: white;
+  font-size: 30px;
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.reset {
+  cursor: pointer;
+}
+
+.reset-glow {
+  border: 4px solid #e2584d;
+  box-shadow: 0 0 10px #e2584d;
+}
