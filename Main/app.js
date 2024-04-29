@@ -29,7 +29,7 @@ function win(user, computer) {
   computerScore_span.innerHTML = computerScore;
   const userChoiceDiv = document.getElementById(user);
   userLabel_div.style.backgroundColor = "green";
-  const smallUserword = "user".fontsize(3).sub(); //kodel neveikia?
+  const smallUserword = "user".sub(); //kodel neveikia?
   result_p.innerText =
     converttoword(user) + " beats " + converttoword(computer) + ". You win!";
   userChoiceDiv.classList.add("green-glow");
